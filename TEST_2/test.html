@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>String/Struktur Data</title>
+</head>
+<body>
+    
+    <h4>1. Pencarian Kata </h4>
+    
+    <label for="artikel">Masukkan Artikel:</label><br>
+    <textarea name="artikel" id="artikel" rows="5" cols="50" placeholder="Masukkan Artikel"></textarea>
+
+    <div>
+        <label for="carikata">Cari Kata:</label>
+        <input name="carikata" id="carikata" placeholder="Masukkan kata yang ingin dicari">
+    </div>
+
+    <button onclick="carikata()">Cari Kata</button>
+
+    <h4>Hasil : <p id="hasil"></p></h4>
+    
+
+    <hr>
+
+    <h4>2. Ganti Kata </h4>
+
+    <label for="artikel">Masukkan Artikel:</label><br>
+    <textarea id="artikelbaru" rows="5" cols="50" placeholder="Masukkan Artikel"></textarea>
+
+    <div>
+        <label for="kataawal">Kata Yang Ingin Diganti:</label>
+        <input style="margin-bottom: 5px;" id="kataawal" placeholder="Masukkan kata awal">
+    </div>
+    <div>
+        <label for="kataganti">Kata Pengganti:</label>
+        <input id="kataganti" placeholder="Masukkan kata pengganti">
+    </div>
+
+    <button onclick="gantiKata()">Ganti Kata</button>
+
+    <h4>Hasil : <p id="hasilganti"></p></h4>
+
+
+    <hr>
+
+    <h4>3. Statistik Panjang Kata</h4>
+
+    <label for="artikel">Masukkan Artikel:</label><br>
+    <textarea id="artikelstatistik" rows="5" cols="50" placeholder="Masukkan Artikel"></textarea>
+    <button onclick="hitung()">hitung</button>
+
+    <h4>hasil : <p id="hitungkata"></p></h4>
+
+    <hr>
+
+    <h4>4. Sorting Data String </h4>
+
+    <label for="artikel">Masukkan Artikel:</label><br>
+    <textarea id="artikelsort" rows="5" cols="50" placeholder="Masukkan Artikel"></textarea>
+    <button onclick="sorting()">Urutkan Kata</button>
+
+    <h4>hasil : <p id="sortingkata"></p></h4>
+
+
+    <script>
+        function carikata() {
+            const artikel = document.getElementById("artikel").value.toLowerCase();
+            const cariKata = document.getElementById("carikata").value.toLowerCase();
+            
+            const kataArray = artikel.split(/\W+/);
+            let jumlahKata = 0;
+
+            for (let kata of kataArray) {
+                if (kata === cariKata) {
+                    jumlahKata++;
+                }
+            }
+
+            document.getElementById("hasil").innerText = `Kata "${cariKata}" muncul sebanyak ${jumlahKata} kali dalam artikel.`;
+        }
+
+
+        function gantiKata() {
+            const artikel = document.getElementById("artikelbaru").value;
+            const kataAwal = document.getElementById("kataawal").value;
+            const kataGanti = document.getElementById("kataganti").value;
+
+            const hasilganti = artikel.split(kataAwal).join(kataGanti);
+
+            document.getElementById("hasilganti").innerText = hasilganti; 
+        }
+
+        function hitung(){
+            const artikel = document.getElementById("artikelstatistik").value;
+            const katahitung = artikel.split(/\W+/);
+
+            let pendek = 0;
+            let sedang = 0;
+            let panjang = 0;
+
+            for(let kata of katahitung){
+                const datakata = kata.length;
+                if(datakata > 0 && datakata <= 3){
+                    pendek++
+                }else if(datakata <= 6){
+                    sedang++;
+                }else if(datakata > 6){
+                    panjang++;
+                }
+            }
+
+            document.getElementById("hitungkata").innerText = `<= 3 huruf :${pendek} \n4-6 huruf : ${sedang} \n6 huruf : ${panjang}`;
+        }
+
+        function sorting(){
+            const sorting = document.getElementById("artikelsort").value;
+            const kata = sorting.split(/\W+/).filter(kata => kata !== "");
+            const sort = kata.sort();
+            const hasilsort = sort.join(" ")
+
+            document.getElementById("sortingkata").innerText = `Kata (a-z) ${hasilsort}`;
+
+        }
+
+
+
+
+    </script>
+    
+</body>
+</html>
