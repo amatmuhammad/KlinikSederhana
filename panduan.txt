@@ -1,0 +1,10 @@
+User Login menggunakan email dan password berikut :
+
+email 	: admin@example.com
+pass 	: qwerty
+
+untuk tugas 2 ada pada folder TEST_2
+
+database sudah termasuk di dalam
+
+terima kasih
